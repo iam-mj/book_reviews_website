@@ -1,0 +1,52 @@
+body {
+    font-size: 10px;
+    margin: 0px;
+}
+
+.background_img {
+    background-color: #EEE9DA;
+    background-image: url("pictures/books.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    position: absolute;
+    height: 100%;
+    width: 100%;
+
+    /* bluram imaginea de fundal */
+    /*
+    filter: blur(8px);
+    -webkit-filter: blur(8px);*/
+}
+
+.background_text {
+    border: 3px solid #6096B4;
+    width: 30%;
+    z-index: 2; 
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%); /*vezi oleak ce face asta*/
+
+    background-color: rgba(255, 255, 255, 0.8); /* Black w/opacity/see-through */
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+h1 {
+    font-size: 3rem;
+    color: #6096B4;
+}
+
+h2 {
+    font-size: 2rem;
+    color: #93BFCF;
+}
+
+/*Container*/
+.container {
+	padding: 80px 120px;
+  }
