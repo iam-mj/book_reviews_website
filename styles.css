@@ -11,8 +11,10 @@ body {
     background-repeat: no-repeat;
 
     position: absolute;
-    height: 100%;
+    height: 90%;
     width: 100%;
+
+    z-index: -1;
 
     /* bluram imaginea de fundal */
     /*
@@ -23,9 +25,10 @@ body {
 .background_text {
     border: 3px solid #6096B4;
     width: 30%;
+    height: 45%;
     z-index: 2; 
     position: absolute;
-    top: 50%;
+    top: 55%;
     left: 30%;
     transform: translate(-50%, -50%); /*vezi oleak ce face asta*/
 
@@ -34,19 +37,170 @@ body {
 
 h1, h2 {
     text-align: center;
+    position: relative;
+    bottom: 15%;
 }
 
 h1 {
-    font-size: 3rem;
+    font-size: 2.75rem;
     color: #6096B4;
 }
 
 h2 {
-    font-size: 2rem;
+    font-size: 1.75rem;
     color: #93BFCF;
+}
+
+/*Navbar*/
+nav {
+	margin: 0;
+    padding: 0;
+	background-color: #6096B4;
+	border: 0;
+    height: 10%;
+	letter-spacing: 0.1rem;
+	opacity: 0.95;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.navbar-header {
+    margin: 0;
+    font-size: 1.5rem;
+    padding: 0.75rem 1rem;
+    vertical-align: top;
+    height: 100%;
+    display: inline-block;
+    color: #EEE9DA;
+}
+
+.navbar-right {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-self: center;
+    align-items: stretch;
+}
+
+.navbar-right > ul {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.navbar-right > ul > li {
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    margin: 0;
+    font-size: 1rem;
+    vertical-align: middle;
+    text-decoration: none;
+    color: #EEE9DA;
+}
+
+nav ul {
+    height: 100%;
+    box-sizing: border-box;
+    padding: 0.5rem;
+    margin: 0;
+}
+
+nav > ul > li {
+    display: inline-block;
+    vertical-align: top;
+    padding: 1rem;
+    margin: 0;
+    position: relative;
+    height: 100% !important;
+    box-sizing: border-box;
+}
+
+nav li ul {
+    display: none;
+    box-sizing: border-box;
+}
+
+nav li {
+    margin: 0;
+    position: relative;
+    box-sizing: border-box;
+}
+
+nav li:hover {
+    margin: 0;
+    background-color: #6fa0bb;
+    background-clip: padding-box; /*pentru ca background-color sa treaca si peste padding*/
+}
+
+nav li:hover a{
+    color: #fff;
+}
+
+nav ul li:hover ul {
+    list-style-type: '';
+    display: block;
+    padding: 0rem;
+    margin: 0rem;
+    position: absolute;
+    height: auto;
+    width: 100%;
+    top: 100%;
+    right: 0%;
+    background-clip: padding-box; /*pentru ca background-color sa treaca si peste padding*/
+    background-color: #EEE9DA;
+    text-align: center;
+}
+
+nav ul li:hover ul li {
+    padding: 0.5rem;
+    margin: 0rem;
+}
+
+nav ul li:hover ul li a{
+    color: #6fa0bb;
+}
+
+nav ul li:hover ul li:hover {
+    background-color: #9fc0d2;
+}
+
+nav ul li:hover ul li:hover a{
+    color: #fff;
 }
 
 /*Container*/
 .container {
 	padding: 80px 120px;
   }
+
+/*Buttons*/
+.btn {
+    border: 1px solid #93BFCF;
+	padding: 0.75rem;
+	background-color: #93BFCF;
+	color: #fff;
+	border-radius: 10px;
+	transition: .2s;
+}
+
+.btn:hover, .btn:focus {
+	padding: 0.75rem;
+	border: 1px solid #93BFCF;
+	background-color: #fff;
+	color: #93BFCF;
+}
+
+.background_text button {
+    position: absolute;
+    top: 65%;
+    left: 30%;
+    height: 3rem;
+    width: auto;
+    font-size: 1.25rem;
+}
