@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Bookish Reviews </title>
+    <link rel = "stylesheet" type = "text/css" href = "styles.css"/>
+</head>
+<body>
+    
+    <header> 
+        <!-- Navbar -->
+        <nav>
+    
+            <span class = "navbar-header"> BookishReviews </span>
+      
+            <ul class = "navbar-right">
+                <li><a href = "index.html"> HOME </a></li>
+                <li class = "dropdown-menu">
+                    <a href = "books.html"> OUR BOOKS </a>
+                    <ul>
+                    <li><a href = "books.html#classics"> CLASSICS </a></li>
+                    <li><a href = "books.html#detective"> DETECTIVE </a></li>
+                    <li><a href = "books.html#fantasy"> FANTASY </a></li>
+                    <li><a href = "books.html#romance"> ROMANCE </a></li>
+                    <li><a href = "books.html#sf"> SF </a></li>
+                    </ul>
+                </li>
+                <li> <a href = "review.html"> WRITE A REVIEW </a> </li>
+            </ul>
+
+        </nav>
+    </header>
+
+    <main> 
+
+        <section id = "myForm">
+
+            <h2> Write a review for your favourite book </h2>
+
+            <form>
+
+                <section id = "title_">
+                    <label for = "title"> Title: </label>
+                    <input type = "text" id = "title" required>
+                </section>
+
+                <section id = "author_">
+                    <label for = "author"> Author: </label>
+                    <input type = "text" id = "author" required>
+                </section>
+
+                <section id = "content_">
+                    <label for = "content"> Review: </label>
+                    <textarea></textarea>
+                </section>
+
+                <section id = stars_>
+                    <label for = "stars"> Stars: </label>
+                    <input type = "number" min = "1" max = "5">
+                </section>
+
+                <section id = "terms_">
+                    <input type = "checkbox" id = "terms" required>
+                    <label for = "terms"> 
+                        I understand that by submitting this form my review 
+                        will be visible to all the users of Bookish Reviews 
+                    </label>
+                </section>
+
+                <section id = "submit_">
+                    <input type = "submit" class = "btn">
+                </section>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <footer id = "ft_rev">
+
+    </footer>
+
+</body>
+</html>

@@ -1,6 +1,7 @@
 body {
     font-size: 10px;
     margin: 0px;
+    background-color: #f9f8f3;
 }
 
 .background_img {
@@ -11,8 +12,9 @@ body {
     background-repeat: no-repeat;
 
     position: absolute;
-    height: 90%;
+    height: 100%;
     width: 100%;
+    margin: 0;
 
     z-index: -1;
 
@@ -63,6 +65,8 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: stretch;
+    position: fixed;
+    width: 100%;
 }
 
 .navbar-header {
@@ -153,7 +157,7 @@ nav ul li:hover ul {
     top: 100%;
     right: 0%;
     background-clip: padding-box; /*pentru ca background-color sa treaca si peste padding*/
-    background-color: #EEE9DA;
+    background-color: #f9f8f3;
     text-align: center;
 }
 
@@ -194,6 +198,7 @@ nav ul li:hover ul li:hover a{
 	border: 1px solid #93BFCF;
 	background-color: #fff;
 	color: #93BFCF;
+    cursor: pointer;
 }
 
 .background_text button {
@@ -203,4 +208,94 @@ nav ul li:hover ul li:hover a{
     height: 3rem;
     width: auto;
     font-size: 1.25rem;
+}
+
+/*Form*/
+#myForm {
+    padding: 0.5rem;
+    position: absolute;
+    top: 15%;
+    left: 10%;
+    right: 10%;
+    height: auto;
+    z-index: -1;
+
+    background-color: #fdfcfb;
+    color: #93BFCF; 
+
+    border: 0.1rem solid #EEE9DA;
+    border-radius: 10px;
+    font-size: 1.25rem;
+}
+
+#myForm h2 {
+    position: static;
+}
+
+#myForm form {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 2fr 1fr 1fr;
+    grid-template-areas: 
+        "_title_  _author_"
+        "_content_ _content_"
+        "_terms_ _stars_"
+        "_submit_ .";
+    
+    justify-content: center;
+    align-items: middle;
+    gap: 7% 5%;
+}
+
+label[for = "terms"] {
+    color: #BDCDD6;
+}
+
+input, textarea {
+    margin: 0.3rem;
+}
+
+input[type = "text"], textarea {
+    display: block;
+    height: 60%;
+    width: 80%;
+}
+
+input[type = "submit"] {
+    margin-bottom: 1rem;
+}
+
+#title_ {
+    grid-area: _title_;
+}
+#author_ {
+    grid-area: _author_;
+}
+#content_ {
+    grid-area: _content_;
+}
+#stars_ {
+    grid-area: _stars_;
+}
+#terms_ {
+    grid-area: _terms_;
+}
+#submit_ {
+    grid-area: _submit_;
+}
+
+/*Footer*/
+footer {
+	background-color: #6096B4;
+	padding: 2rem;
+    position: absolute;
+    box-sizing: border-box;
+    width: 100%;
+    top: 98%;
+    margin: 0%;
+  }
+
+#ft_rev {
+    top: 90%;
 }
