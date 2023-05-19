@@ -67,6 +67,7 @@ nav {
     align-items: stretch;
     position: fixed;
     width: 100%;
+    z-index: 10 !important;
 }
 
 .navbar-header {
@@ -285,6 +286,89 @@ input[type = "submit"] {
     grid-area: _submit_;
 }
 
+
+/*Books Page*/
+
+#h2_books {
+    position: absolute;
+    top: 10%;
+    text-align: center;
+    width: 100%;
+    letter-spacing: 0.1rem;
+}
+
+#books {
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    right: 5%;
+}
+
+.book_sect {
+    margin: 3rem 2rem;
+}
+
+.book_sect h3 {
+    background-color: #93BFCF; 
+    color: #fdfcfb;
+    font-size: 1.5rem;
+    padding-left: 1.5rem;
+    background-clip: border-box;
+    border: 1px transparent #fff;
+    border-radius: 10px;
+}
+
+.book_container {
+    white-space: nowrap;
+    overflow-x: scroll;
+    width: 100%;
+}
+
+.book {
+    height: 12rem;
+    width: 10rem;
+    margin: 0.5rem 1rem;
+}
+
+.book:hover {
+    cursor: pointer;
+}
+
+.exit_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: end;
+
+    font-size: 1rem;
+    height: 2rem;
+    width: 2rem;
+}
+
+.popUp {
+    position: fixed;
+    top: 25%;
+    left: 25%;
+    z-index: 100;
+    height: 50%;
+    width: 50%;
+
+    padding: 1rem;
+    background-color: #BDCDD6;
+    border: 1px transparent #BDCDD6;
+    border-radius: 15px;
+
+    display: grid;
+    grid-template-columns: 2fr 3fr 1fr;
+    grid-template-rows: 1fr 1fr 2fr 1fr 1fr;
+    grid-template-areas: "cover title button"
+                         "cover authors . "
+                         "cover reviews . " 
+                         "cover reviews . " 
+                         "details reviews . ";
+}
+
+
 /*Footer*/
 footer {
 	background-color: #6096B4;
@@ -298,4 +382,8 @@ footer {
 
 #ft_rev {
     top: 90%;
+}
+
+#ft_bk {
+    top: 300%;
 }
