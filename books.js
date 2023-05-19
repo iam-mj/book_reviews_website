@@ -64,14 +64,17 @@ function start()
         {
             const result = await fetch(url);
             const data = await result.json();
-            console.log(data);
 
             const cover = document.createElement("img");
 
+            //style
             cover.src = data[isbn]["cover"]["large"];
-            cover.style.height = "12rem";
-            cover.style.width = "10rem";
-            cover.style.margin = "0.5rem 1rem";
+            cover.classList.add("book");
+
+            //js
+            cover.addEventListener('click', (e) => {
+                description(e, data[isbn])
+            });
             
             switch(idx)
             {
@@ -107,4 +110,74 @@ function start()
             console.log("A aparut o eroare pt " + isbn + "!");
         }
     }
+}
+
+function description(e, data) {
+    e.stopPropagation();
+
+    //when we click on a cover we want a whole other window to appear
+    let newWindow = document.createElement("article");
+    let img = document.createElement("img");
+    let title = document.createElement("h3");
+    let author = document.createElement("h4");
+    let numPages = document.createElement("p");
+    let date = document.createElement("p");
+    let review = document.createElement("section");
+    let details = document.createElement("section");
+    let reviewTitle = document.createElement("h5");
+    let exit = document.createElement("button");
+
+    let sourceStyle = window.getComputedStyle(e.target);
+    img.src = e.target.src;
+    img.style.height = '90%';
+    img.style.width = sourceStyle.width;
+    img.style.margin = sourceStyle.margin;
+
+    title.innerText = data["title"];
+    
+    if(data["number_of_pages"])
+        numPages.innerText = "Number of pages: " + data["number_of_pages"];
+    else numPages.innerText = "Number of pages: ?";
+    date.innerText = "Publish date: " + data["publish_date"];
+
+    details.style.margin = sourceStyle.margin; 
+    //vor fi pe aceeasi coloana ca si cover-ul => vrem sa aiba aceleasi margini
+    details.appendChild(date);
+    details.appendChild(numPages);
+    
+    reviewTitle.innerText = "REVIEWS";
+    review.appendChild(reviewTitle);
+    review.style.backgroundColor = "#fff";
+
+    let authors = [];
+    data["authors"].forEach(element => {
+        authors.push(element["name"]);
+    });
+
+    author.innerText = authors.join(", ");
+
+    exit.innerText = "X";
+    exit.classList.add("exit_btn");
+    exit.classList.add("btn");
+    exit.addEventListener('click', () => {
+        newWindow.remove();
+    });
+
+    img.style.gridArea = "cover";
+    title.style.gridArea = "title";
+    author.style.gridArea = "authors";
+    review.style.gridArea = "reviews";
+    details.style.gridArea = "details";
+    exit.style.gridAres = "button";
+
+    newWindow.appendChild(img);
+    newWindow.appendChild(title);
+    newWindow.appendChild(author);
+    newWindow.appendChild(review);
+    newWindow.appendChild(details);
+    newWindow.appendChild(exit);
+
+    newWindow.classList.add("popUp");
+    
+    document.body.append(newWindow);
 }

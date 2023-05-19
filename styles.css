@@ -324,6 +324,50 @@ input[type = "submit"] {
     width: 100%;
 }
 
+.book {
+    height: 12rem;
+    width: 10rem;
+    margin: 0.5rem 1rem;
+}
+
+.book:hover {
+    cursor: pointer;
+}
+
+.exit_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: end;
+
+    font-size: 1rem;
+    height: 2rem;
+    width: 2rem;
+}
+
+.popUp {
+    position: fixed;
+    top: 25%;
+    left: 25%;
+    z-index: 100;
+    height: 50%;
+    width: 50%;
+
+    padding: 1rem;
+    background-color: #BDCDD6;
+    border: 1px transparent #BDCDD6;
+    border-radius: 15px;
+
+    display: grid;
+    grid-template-columns: 2fr 3fr 1fr;
+    grid-template-rows: 1fr 1fr 2fr 1fr 1fr;
+    grid-template-areas: "cover title button"
+                         "cover authors . "
+                         "cover reviews . " 
+                         "cover reviews . " 
+                         "details reviews . ";
+}
+
 
 /*Footer*/
 footer {
