@@ -48,15 +48,41 @@ function start()
     addBook(goodOmens, "ISBN:9780062934918", 3);
     const nameWind = "https://openlibrary.org/api/books?bibkeys=ISBN:9780756404741&jscmd=data&format=json";
     addBook(nameWind, "ISBN:9780756404741", 3);
+    const johnathanStrage = "https://openlibrary.org/api/books?bibkeys=ISBN:1582344167&jscmd=data&format=json";
+    addBook(johnathanStrage, "ISBN:1582344167", 3);
+    const strangeDreamer = "https://openlibrary.org/api/books?bibkeys=ISBN:9781444788952&jscmd=data&format=json";
+    addBook(strangeDreamer, "ISBN:9781444788952", 3);
+    const tillWeHaveFaces = "https://openlibrary.org/api/books?bibkeys=ISBN:9780062565419&jscmd=data&format=json";
+    addBook(tillWeHaveFaces, "ISBN:9780062565419", 3);
+    const starlessSea = "https://openlibrary.org/api/books?bibkeys=ISBN:9781910701454&jscmd=data&format=json";
+    addBook(starlessSea, "ISBN:9781910701454", 3);
+    const howl = "https://openlibrary.org/api/books?bibkeys=ISBN:9780061478789&jscmd=data&format=json";
+    addBook(howl, "ISBN:9780061478789", 3);
 
 
     //romance
     const normalPeople = "https://openlibrary.org/api/books?bibkeys=ISBN:9781984822178&jscmd=data&format=json";
     addBook(normalPeople, "ISBN:9781984822178", 4);
+    const giveTheSun = "https://openlibrary.org/api/books?bibkeys=ISBN:9780803734968&jscmd=data&format=json";
+    addBook(giveTheSun, "ISBN:9780803734968", 4);
+    const turtles = "https://openlibrary.org/api/books?bibkeys=ISBN:9780241335437&jscmd=data&format=json";
+    addBook(turtles, "ISBN:9780241335437", 4);
+    const addieLaRue = "https://openlibrary.org/api/books?bibkeys=ISBN:9781785652509&jscmd=data&format=json";
+    addBook(addieLaRue, "ISBN:9781785652509", 4);
 
     //sf
     const invisibleMan = "https://openlibrary.org/api/books?bibkeys=ISBN:9780893754150&jscmd=data&format=json";
     addBook(invisibleMan, "ISBN:9780893754150", 5);
+    const windsTwelveQuarters = "https://openlibrary.org/api/books?bibkeys=ISBN:9781473205765&jscmd=data&format=json";
+    addBook(windsTwelveQuarters, "ISBN:9781473205765", 5);
+    const dune = "https://openlibrary.org/api/books?bibkeys=ISBN:0399128964&jscmd=data&format=json";
+    addBook(dune, "ISBN:0399128964", 5);
+    const smallAngryPlanet = "https://openlibrary.org/api/books?bibkeys=ISBN:9781473619814&jscmd=data&format=json";
+    addBook(smallAngryPlanet, "ISBN:9781473619814", 5);
+    const hitchhikerGuide = "https://openlibrary.org/api/books?bibkeys=ISBN:9781509860142&jscmd=data&format=json";
+    addBook(hitchhikerGuide, "ISBN:9781509860142", 5);
+    const solaris = "https://openlibrary.org/api/books?bibkeys=ISBN:0802755267&jscmd=data&format=json";
+    addBook(solaris, "ISBN:0802755267", 5);
 
     async function addBook(url, isbn, idx)
     {
