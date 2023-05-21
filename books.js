@@ -147,7 +147,28 @@ function description(e, data) {
     
     reviewTitle.innerText = "REVIEWS";
     review.appendChild(reviewTitle);
-    review.style.backgroundColor = "#fff";
+
+    let rvw = null; //check for reviews
+    try{
+        rvw = JSON.parse(localStorage.getItem(`${title.innerText}`));
+    }
+    catch(err) {}
+
+    if(rvw)
+    {
+        rvw.forEach(function(myReview) {
+            console.log(myReview);
+            let p = document.createElement("p");
+            p.innerText = myReview[0];
+            console.log(myReview[0]);
+            review.appendChild(p);
+        });
+    }
+
+    review.style.backgroundColor = "rgba(255, 255, 255, 0.4)";
+    review.style.border = "1px transparent #fff";
+    review.style.borderRadius = "10px";
+    review.style.padding = "0.5rem 1rem";
 
     let authors = [];
     data["authors"].forEach(element => {
