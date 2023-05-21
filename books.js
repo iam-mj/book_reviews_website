@@ -120,55 +120,24 @@ function description(e, data) {
     let img = document.createElement("img");
     let title = document.createElement("h3");
     let author = document.createElement("h4");
+    let titles = document.createElement("section");
+    let stars = document.createElement("h5");
     let numPages = document.createElement("p");
     let date = document.createElement("p");
     let review = document.createElement("section");
+    let reviewss = document.createElement("section");
     let details = document.createElement("section");
-    let reviewTitle = document.createElement("h5");
     let exit = document.createElement("button");
 
+    //Cover
     let sourceStyle = window.getComputedStyle(e.target);
     img.src = e.target.src;
     img.style.height = '90%';
     img.style.width = sourceStyle.width;
     img.style.margin = sourceStyle.margin;
 
+    //Title & Authors
     title.innerText = data["title"];
-    
-    if(data["number_of_pages"])
-        numPages.innerText = "Number of pages: " + data["number_of_pages"];
-    else numPages.innerText = "Number of pages: ?";
-    date.innerText = "Publish date: " + data["publish_date"];
-
-    details.style.margin = sourceStyle.margin; 
-    //vor fi pe aceeasi coloana ca si cover-ul => vrem sa aiba aceleasi margini
-    details.appendChild(date);
-    details.appendChild(numPages);
-    
-    reviewTitle.innerText = "REVIEWS";
-    review.appendChild(reviewTitle);
-
-    let rvw = null; //check for reviews
-    try{
-        rvw = JSON.parse(localStorage.getItem(`${title.innerText}`));
-    }
-    catch(err) {}
-
-    if(rvw)
-    {
-        rvw.forEach(function(myReview) {
-            console.log(myReview);
-            let p = document.createElement("p");
-            p.innerText = myReview[0];
-            console.log(myReview[0]);
-            review.appendChild(p);
-        });
-    }
-
-    review.style.backgroundColor = "rgba(255, 255, 255, 0.4)";
-    review.style.border = "1px transparent #fff";
-    review.style.borderRadius = "10px";
-    review.style.padding = "0.5rem 1rem";
 
     let authors = [];
     data["authors"].forEach(element => {
@@ -177,6 +146,61 @@ function description(e, data) {
 
     author.innerText = authors.join(", ");
 
+    titles.id = "titles";
+    titles.appendChild(title);
+    titles.appendChild(author);
+    
+    //Details
+    if(data["number_of_pages"])
+        numPages.innerText = "Number of pages: " + data["number_of_pages"];
+    else numPages.innerText = "Number of pages: ?";
+    date.innerText = "Publish date: " + data["publish_date"];
+
+    details.style.margin = sourceStyle.margin; 
+    details.classList.add("blue");
+    //vor fi pe aceeasi coloana ca si cover-ul => vrem sa aiba aceleasi margini
+    details.appendChild(date);
+    details.appendChild(numPages);
+    
+
+    //Reviews
+    let rvw = null; //check for reviews
+    try{
+        rvw = JSON.parse(localStorage.getItem(`${title.innerText}`));
+    }
+    catch(err) {}
+
+    let statistic = 0; //face media stelutelor
+
+    if(rvw)
+    {
+        rvw.forEach(function(myReview) {
+            let content = document.createElement("section");
+            let stars = document.createElement("p");
+            let p = document.createElement("p");
+
+            p.innerText = myReview[0];
+            stars.innerText = "Stars: " + myReview[1];
+
+            statistic += parseInt(myReview[1]);
+
+            content.appendChild(stars);
+            content.appendChild(p);
+
+            content.classList.add("rvw_content");
+            review.appendChild(content);
+        });
+
+        statistic = (statistic / rvw.length).toFixed(2);
+    }
+    review.classList.add("reviews");
+
+
+    //Stars
+    stars.innerHTML = '<span class = "blue_only">' + "Stars: " + '</span>' + statistic;
+    stars.classList.add("stars");
+
+    //Exit Button
     exit.innerText = "X";
     exit.classList.add("exit_btn");
     exit.classList.add("btn");
@@ -185,15 +209,15 @@ function description(e, data) {
     });
 
     img.style.gridArea = "cover";
-    title.style.gridArea = "title";
-    author.style.gridArea = "authors";
+    titles.style.gridArea = "titles";
+    stars.style.gridArea = "stars";
     review.style.gridArea = "reviews";
     details.style.gridArea = "details";
     exit.style.gridAres = "button";
 
     newWindow.appendChild(img);
-    newWindow.appendChild(title);
-    newWindow.appendChild(author);
+    newWindow.appendChild(titles);
+    newWindow.appendChild(stars);
     newWindow.appendChild(review);
     newWindow.appendChild(details);
     newWindow.appendChild(exit);
