@@ -1,11 +1,19 @@
 window.onload = start;
 function start() 
 {
-    const classics = document.getElementById("classics");
-    const detective = document.getElementById("detective");
-    const fantasy = document.getElementById("fantasy");
-    const romance = document.getElementById("romance");
-    const sf = document.getElementById("sf");
+    loading();
+    createBooks();
+}
+
+function createBooks() {
+    let loaded = 0; //how many images have loaded
+    let loadedTotal = 32; //how many are supposed to be loaded
+    const genres = document.getElementsByClassName('book_container');
+    const classics = genres[0];
+    const detective = genres[1];
+    const fantasy = genres[2];
+    const romance = genres[3];
+    const sf = genres[4];
 
     //clasici
     const dubliners = "https://openlibrary.org/api/books?bibkeys=ISBN:9780140186475&jscmd=data&format=json";
@@ -84,6 +92,11 @@ function start()
     const solaris = "https://openlibrary.org/api/books?bibkeys=ISBN:0802755267&jscmd=data&format=json";
     addBook(solaris, "ISBN:0802755267", 5);
 
+    function checkTotal() {
+        if(loaded === loadedTotal)
+            stopLoading();
+    }
+
     async function addBook(url, isbn, idx)
     {
         try
@@ -96,6 +109,10 @@ function start()
             //style
             cover.src = data[isbn]["cover"]["large"];
             cover.classList.add("book");
+            cover.onload = function() {
+                loaded++;
+                checkTotal();
+            }
 
             //js
             cover.addEventListener('click', (e) => {
@@ -133,6 +150,7 @@ function start()
         } 
         catch(error)
         {
+            loaded++;
             console.log("A aparut o eroare pt " + isbn + "!");
         }
     }
@@ -151,19 +169,18 @@ function description(e, data) {
     let numPages = document.createElement("p");
     let date = document.createElement("p");
     let review = document.createElement("section");
-    let reviewss = document.createElement("section");
     let details = document.createElement("section");
     let exit = document.createElement("button");
 
     //Cover
-    let sourceStyle = window.getComputedStyle(e.target);
-    img.src = e.target.src;
+    let sourceStyle = window.getComputedStyle(e.currentTarget);
+    img.src = e.currentTarget.src;
     img.style.height = '90%';
     img.style.width = sourceStyle.width;
     img.style.margin = sourceStyle.margin;
 
     //Title & Authors
-    title.innerText = data["title"];
+    title.innerText = data["title"].replace(/\b\w/g, match => match.toUpperCase()); //regex
 
     let authors = [];
     data["authors"].forEach(element => {
@@ -180,7 +197,8 @@ function description(e, data) {
     if(data["number_of_pages"])
         numPages.innerText = "Number of pages: " + data["number_of_pages"];
     else numPages.innerText = "Number of pages: ?";
-    date.innerText = "Publish date: " + data["publish_date"];
+    let publishDate = new Date(Date.parse(data["publish_date"]));
+    date.innerText = "Publish date: " + publishDate.toLocaleDateString();
 
     details.style.margin = sourceStyle.margin; 
     details.classList.add("blue");
@@ -251,4 +269,58 @@ function description(e, data) {
     newWindow.classList.add("popUp");
     
     document.body.append(newWindow);
+}
+
+
+idInterval = []; //we store the interval ids
+function loading() {
+    nr = 0; // we count the circles
+    setTimeout(addCircle, 1000);
+    function addCircle() {
+        nr += 1;
+        const circle = document.createElement('div');
+        circle.classList.add('circle');
+        const section = document.getElementsByTagName('aside')[0];
+        section.appendChild(circle);
+
+        let angle = 0;
+        const radius = 30;
+        const centerX = section.offsetWidth / 2;
+        const centerY = section.offsetHeight / 2;
+
+        function moveCircle() {
+            const x = centerX + radius * Math.cos(angle);
+            const y = centerY + radius * Math.sin(angle);
+            circle.style.left = x + 'px';
+            circle.style.top = y + 'px';
+            angle += 0.03;
+        }
+
+        idInterval.push(setInterval(moveCircle, 10));
+        if(nr <= 4)
+            setTimeout(addCircle, 400);
+    }
+}
+
+const h2 = document.getElementById('h2_books');
+function stopLoading() {
+    const wall = document.getElementsByTagName('aside')[0];
+    idInterval.forEach(element => {clearInterval(element)}); //we clear all intervals
+    wall.style.display = 'none';
+
+    //we start the animation for the title
+    const h2 = document.getElementById('h2_books');
+    h2.classList.add('animated');
+    startAnimation(h2);
+}
+
+function startAnimation(element) {
+    document.addEventListener('keyup', (e) => {
+            if(e.key.toLowerCase() === 't')
+            {
+                element.classList.remove('animated');
+                void element.offsetWidth; //to trigger the animation again
+                element.classList.add('animated');
+            }
+    });
 }
