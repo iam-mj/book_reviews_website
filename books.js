@@ -1,6 +1,13 @@
 window.onload = start;
 function start() 
 {
+    loading();
+    createBooks();
+}
+
+function createBooks() {
+    let loaded = 0; //how many images have loaded
+    let loadedTotal = 32; //how many are supposed to be loaded
     const classics = document.getElementById("classics");
     const detective = document.getElementById("detective");
     const fantasy = document.getElementById("fantasy");
@@ -84,6 +91,11 @@ function start()
     const solaris = "https://openlibrary.org/api/books?bibkeys=ISBN:0802755267&jscmd=data&format=json";
     addBook(solaris, "ISBN:0802755267", 5);
 
+    function checkTotal() {
+        if(loaded === loadedTotal)
+            stopLoading();
+    }
+
     async function addBook(url, isbn, idx)
     {
         try
@@ -96,6 +108,10 @@ function start()
             //style
             cover.src = data[isbn]["cover"]["large"];
             cover.classList.add("book");
+            cover.onload = function() {
+                loaded++;
+                checkTotal();
+            }
 
             //js
             cover.addEventListener('click', (e) => {
@@ -133,6 +149,7 @@ function start()
         } 
         catch(error)
         {
+            loaded++;
             console.log("A aparut o eroare pt " + isbn + "!");
         }
     }
@@ -251,4 +268,44 @@ function description(e, data) {
     newWindow.classList.add("popUp");
     
     document.body.append(newWindow);
+}
+
+idInterval = []; //we store the interval ids
+function loading() {
+    nr = 0; // we count the circles
+    setTimeout(addCircle, 1000);
+    function addCircle() {
+        nr += 1;
+        const circle = document.createElement('div');
+        circle.classList.add('circle');
+        const section = document.getElementById('loading');
+        section.appendChild(circle);
+
+        let angle = 0;
+        const radius = 30;
+        const centerX = section.offsetWidth / 2;
+        const centerY = section.offsetHeight / 2;
+
+        function moveCircle() {
+            const x = centerX + radius * Math.cos(angle);
+            const y = centerY + radius * Math.sin(angle);
+            circle.style.left = x + 'px';
+            circle.style.top = y + 'px';
+            angle += 0.03;
+        }
+
+        idInterval.push(setInterval(moveCircle, 10));
+        if(nr <= 4)
+            setTimeout(addCircle, 400);
+    }
+}
+
+function stopLoading() {
+    const wall = document.getElementById('loading');
+    idInterval.forEach(element => {clearInterval(element)}); //we clear all intervals
+    wall.style.display = 'none';
+
+    //we startbthe animation for the title
+    const h2 = document.getElementById('h2_books');
+    h2.classList.add('animated');
 }
