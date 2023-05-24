@@ -2,6 +2,36 @@ window.onload = start;
 function start()
 {
     const form = document.getElementById("myForm");
+
+
+    const textarea = document.getElementsByTagName('textarea')[0].addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+    const input = document.getElementsByTagName('input');
+    const inputArray = [...input].forEach(element => {
+        element.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+    });
+
+
+    let cnt = true;
+    let pastTarget = null;
+    form.addEventListener('click', (e) => {
+        if(cnt)
+        {
+            pastTarget = window.getComputedStyle(e.target).backgroundColor;
+            e.target.style.backgroundColor = '#93BFCF';
+            e.currentTarget.style.backgroundColor = '#304b5a';
+            cnt = false;
+        }
+        else {
+            e.target.style.backgroundColor = pastTarget;
+            e.currentTarget.style.backgroundColor = '#fdfcfb';
+            cnt = true;
+        }
+        
+    });
     form.addEventListener("submit", (e) => {
 
         e.preventDefault();

@@ -173,8 +173,8 @@ function description(e, data) {
     let exit = document.createElement("button");
 
     //Cover
-    let sourceStyle = window.getComputedStyle(e.target);
-    img.src = e.target.src;
+    let sourceStyle = window.getComputedStyle(e.currentTarget);
+    img.src = e.currentTarget.src;
     img.style.height = '90%';
     img.style.width = sourceStyle.width;
     img.style.margin = sourceStyle.margin;
@@ -270,6 +270,7 @@ function description(e, data) {
     
     document.body.append(newWindow);
 }
+
 
 idInterval = []; //we store the interval ids
 function loading() {
