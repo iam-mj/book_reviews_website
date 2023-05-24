@@ -4,39 +4,6 @@ body {
     background-color: #f9f8f3;
 }
 
-.background_img {
-    background-color: #EEE9DA;
-    background-image: url("pictures/books.jpg");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    margin: 0;
-
-    z-index: -1;
-
-    /* bluram imaginea de fundal */
-    /*
-    filter: blur(8px);
-    -webkit-filter: blur(8px);*/
-}
-
-.background_text {
-    border: 3px solid #6096B4;
-    width: 30%;
-    height: 45%;
-    z-index: 2; 
-    position: absolute;
-    top: 55%;
-    left: 30%;
-    transform: translate(-50%, -50%); /*vezi oleak ce face asta*/
-
-    background-color: rgba(255, 255, 255, 0.8); /* Black w/opacity/see-through */
-}
-
 h1, h2 {
     text-align: center;
     position: relative;
@@ -51,6 +18,52 @@ h1 {
 h2 {
     font-size: 1.75rem;
     color: #93BFCF;
+}
+
+.background_img {
+    background-color: #EEE9DA;
+    background-image: url("pictures/books.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+
+    z-index: -1;
+}
+
+.background_text {
+    border: 3px solid #6096B4;
+    width: 30%;
+    height: 45%;
+    z-index: 2; 
+    position: absolute;
+    top: 55%;
+    left: 30%;
+    transform: translate(-50%, -50%); /*to center it*/
+
+    background-color: rgba(255, 255, 255, 0.8); 
+}
+
+.background_text h1{
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    right: 15%;
+    bottom: 40%;
+}
+
+.background_text button {
+    position: absolute;
+    top: 70%;
+    left: 25%;
+    right: 25%;
+    height: 10%;
+    width: auto;
+    font-size: 1.25rem;
 }
 
 /*Navbar*/
@@ -191,25 +204,16 @@ nav ul li:hover ul li:hover a{
 	background-color: #93BFCF;
 	color: #fff;
 	border-radius: 10px;
-	transition: .2s;
+	transition: color .2s, background-color .5s linear .2s;
 }
 
 .btn:hover, .btn:focus {
-	padding: 0.75rem;
 	border: 1px solid #93BFCF;
 	background-color: #fff;
 	color: #93BFCF;
     cursor: pointer;
 }
 
-.background_text button {
-    position: absolute;
-    top: 65%;
-    left: 30%;
-    height: 3rem;
-    width: auto;
-    font-size: 1.25rem;
-}
 
 /*Form*/
 #myForm {
@@ -289,13 +293,75 @@ input[type = "submit"] {
 
 /*Books Page*/
 
+/*Title Animation*/
+#second_word::before {
+    content: " ";
+    display: inline-block;
+    width: 3%;
+    height: 3%;
+}
+
 #h2_books {
+    display: inline-block;
     position: absolute;
-    top: 10%;
+    top: 5%;
     text-align: center;
     width: 100%;
-    letter-spacing: 0.1rem;
 }
+
+#h2_books span{
+    display: inline-block;
+    animation: riseLetter 0.5s ease-in-out forwards;
+}
+
+@keyframes riseLetter {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+      color: #b0c5cf;
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+  
+#h2_books span:nth-child(1) {
+    animation-delay: 0s;
+    color: #6096B4;
+}
+  
+#h2_books span:nth-child(2) {
+    animation-delay: 0.2s;
+    color: #6096B4;
+}
+  
+#h2_books span:nth-child(3) {
+    animation-delay: 0.4s;
+    color: #6096B4;
+}
+
+#h2_books span:nth-child(4) {
+    animation-delay: 0.6s;
+}
+
+#h2_books span:nth-child(5) {
+    animation-delay: 0.8s;
+}
+
+#h2_books span:nth-child(6) {
+    animation-delay: 1s;
+}
+
+#h2_books span:nth-child(7) {
+    animation-delay: 1.2s;
+}
+
+#h2_books span:nth-child(8) {
+    animation-delay: 1.4s;
+}
+
 
 #books {
     position: absolute;
@@ -332,6 +398,7 @@ input[type = "submit"] {
 
 .book:hover {
     cursor: pointer;
+    box-shadow: 1px 1px 5px 3px #29353b;
 }
 
 .exit_btn {
@@ -450,4 +517,40 @@ footer {
 
 #ft_bk {
     top: 300%;
+}
+
+
+@media (max-width: 960px)
+{
+    h1 {
+        font-size: 2.25rem;
+    }
+    .background_text button {
+        font-size: 0.75rem;
+        top: 60%; 
+    }
+    nav a {
+        font-size: 0.75rem;
+    }
+    #ft_rev {
+        top: 135%;
+    }
+}
+
+@media (max-width: 480px)
+{
+    #ft_rev {
+        top: 140%;
+    }
+}
+
+@media (max-height: 540px)
+{
+    #ft_rev {
+        top: 150%;
+    }
+    
+    #ft_bk {
+        top: 400%;
+    }
 }

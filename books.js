@@ -163,7 +163,7 @@ function description(e, data) {
     img.style.margin = sourceStyle.margin;
 
     //Title & Authors
-    title.innerText = data["title"];
+    title.innerText = data["title"].replace(/\b\w/g, match => match.toUpperCase()); //regex
 
     let authors = [];
     data["authors"].forEach(element => {
