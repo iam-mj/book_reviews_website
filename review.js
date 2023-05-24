@@ -21,8 +21,8 @@ function start()
         if(cnt)
         {
             pastTarget = window.getComputedStyle(e.target).backgroundColor;
-            e.target.style.backgroundColor = '#93BFCF';
-            e.currentTarget.style.backgroundColor = '#304b5a';
+            e.target.style.backgroundColor = '#D0DCE2';
+            e.currentTarget.style.backgroundColor = '#f5efea';
             cnt = false;
         }
         else {

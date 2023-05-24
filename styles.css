@@ -559,6 +559,36 @@ footer {
     top: 300%;
 }
 
+/*404 Page*/
+#_404 {
+    position: absolute;
+    left: 15%;
+    right: 15%;
+    top: 25%;
+    background-color: #fdfcfb;
+    border: 1px solid #6096B4;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+#_404 h2 {
+    color: #6fa0bb;
+}
+
+#_404 p {
+    color: #304b5a;
+    font-size: 1rem;
+}
+
+#_404 button {
+    margin-top: 3%;
+    width: 20%;
+    height: 10%;
+    align-self: center;
+}
 
 @media (max-width: 960px)
 {
